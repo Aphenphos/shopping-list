@@ -3,22 +3,28 @@ import { protectPage } from './utils.js';
 import createUser from './components/User.js';
 import { getAllItems, createItem, deleteItem, updateItem } from './services/Item-service.js';
 import createListItems from './components/Items.js';
-import createNewItem from './components/AddItem.js';
 // State
 let user = null;
 let items = [];
+const inputForm = document.getElementById('user-inputs');
+
+//form
+inputForm.addEventListener('submit', async (e)=> {
+    e.preventDefault();
+    const data = new FormData(inputForm);
+    console.log(data.get('name'));
+    const item = await createItem({
+        item: data.get('name'),
+        quantity: data.get('quantity'),
+        bought: false,
+        user_id: user.id
+    });
+    console.log(item);
+    items.push(item);
+});
 
 
 // Action Handlers
-
-async function handleAdd(itemName, quantity) {
-    const item = await createItem({
-        name: itemName,
-        quantity: quantity,
-        bought: false,
-    });
-    items.push(item);
-}
 
 async function handleBuy(item) {
     item.bought = true;
@@ -58,14 +64,10 @@ const Items = createListItems(document.querySelector('#list-container'), {
     handleDelete,
 });
 
-const AddItem = createNewItem(document.querySelector('#user-inputs'), {
-    handleAdd
-});
 
 function display() {
     User({ user });
     Items({ items });
-    AddItem();
 }
 
 handlePageLoad();

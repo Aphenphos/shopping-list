@@ -22,7 +22,7 @@ export async function createItem(item) {
         .from('items')
         .insert(item)
         .single();
-
+    console.log(response);
     return response.data;
 }
 
