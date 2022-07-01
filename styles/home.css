@@ -1,0 +1,20 @@
+#list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 2fr));
+    column-gap: 1px;
+    justify-content: space-around;
+    grid-gap: 5px;
+}
+.item-container {
+    max-width: 200px;
+    border: 1px solid black;
+}
+
+.bought {
+    text-decoration: line-through;
+    color: darkgray;
+}
+
+li {
+    list-style: none
+}
