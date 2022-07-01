@@ -22,8 +22,14 @@ export async function createItem(item) {
         .from('items')
         .insert(item)
         .single();
-    console.log(response);
     return response.data;
+}
+
+export async function buyItem(item) {
+    const response = await client
+        .from('items')
+        .update({ bought: true })
+
 }
 
 export async function deleteItem(item) {

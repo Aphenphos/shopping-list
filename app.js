@@ -21,15 +21,19 @@ inputForm.addEventListener('submit', async (e)=> {
     });
     console.log(item);
     items.push(item);
+    display();
 });
 
 
 // Action Handlers
 
 async function handleBuy(item) {
-    item.bought = true;
-    const index = item.indexOf(item);
+    
+
+    const index = items.indexOf(item);
     items[index] = await updateItem(item);
+
+    display();
 }
 
 async function handleDelete(item) {
