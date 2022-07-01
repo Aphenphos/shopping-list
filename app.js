@@ -12,6 +12,8 @@ async function handlePageLoad() {
     user = getUser();
     protectPage(user);
 
+    items = await getAllItems();
+
     display();
 }
 
