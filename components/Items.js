@@ -1,5 +1,5 @@
 
-export function Item({ item, handleBuy, handleDelete }) {
+export function Item(item, { handleBuy, handleDelete }) {
     const li = document.createElement('li');
     li.classList.add('item-container');
 
@@ -14,13 +14,20 @@ export function Item({ item, handleBuy, handleDelete }) {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.classList.add('item-checkbox');
-    checkbox.checked = false;
+    if (item.bought === true) {
+        checkbox.checked = true;
+        li.classList.add('bought');
+    } else {
+        checkbox.checked = false;
+    }
+    // checkbox.checked = false;
     checkbox.addEventListener('click', () => {
         handleBuy(item);
     });
 
     const button = document.createElement('button');
     button.classList.add('remove-item');
+    button.textContent = 'delete';
     button.addEventListener('click', () => {
         handleDelete(item);
     });
@@ -41,11 +48,11 @@ export default function createListItems(root, {
         root.innerHTML = '';
 
         for (const item of items) {
-            const li = Item({
-                item,
-                handleBuy,
-                handleDelete,
-            });
+            const li = Item(
+                item, {
+                    handleBuy,
+                    handleDelete,
+                });
             root.append(li);
         }
     };

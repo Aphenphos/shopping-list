@@ -4,7 +4,8 @@ import { client } from './client.js';
 export async function getAllItems() {
     const response = await client
         .from('items')
-        .select();
+        .select()
+        .order('created_at', { ascending: true });
 
     return response.data;
 }
@@ -24,14 +25,6 @@ export async function createItem(item) {
         .single();
     return response.data;
 }
-
-export async function buyItem(item) {
-    const response = await client
-        .from('items')
-        .update({ bought: true })
-
-}
-
 export async function deleteItem(item) {
     const response = await client
         .from('items')

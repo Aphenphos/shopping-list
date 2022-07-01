@@ -28,10 +28,8 @@ inputForm.addEventListener('submit', async (e)=> {
 // Action Handlers
 
 async function handleBuy(item) {
-    
-
-    const index = items.indexOf(item);
-    items[index] = await updateItem(item);
+    item.bought = !item.bought;
+    await updateItem(item);
 
     display();
 }
