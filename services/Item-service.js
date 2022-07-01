@@ -1,3 +1,4 @@
+import { getUser } from './auth-service.js';
 import { client } from './client.js';
 
 
@@ -31,6 +32,16 @@ export async function deleteItem(item) {
         .delete()
         .match({ id: item.id })
         .single();
+
+    return response.data;
+}
+
+export async function deleteAllItems() {
+    const response = await client
+        .from('items')
+        .delete()
+        .match({ user_id: getUser().id });
+
 
     return response.data;
 }

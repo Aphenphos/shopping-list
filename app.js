@@ -1,12 +1,13 @@
 import { getUser, signOut } from './services/auth-service.js';
 import { protectPage } from './utils.js';
 import createUser from './components/User.js';
-import { getAllItems, createItem, deleteItem, updateItem } from './services/Item-service.js';
+import { getAllItems, createItem, deleteItem, updateItem, deleteAllItems } from './services/Item-service.js';
 import createListItems from './components/Items.js';
 // State
 let user = null;
 let items = [];
 const inputForm = document.getElementById('user-inputs');
+const deleteAllButton = document.getElementById('delete-all');
 
 //form
 inputForm.addEventListener('submit', async (e)=> {
@@ -24,6 +25,13 @@ inputForm.addEventListener('submit', async (e)=> {
     display();
 });
 
+
+deleteAllButton.addEventListener('click', async () => {
+    items = [];
+    await deleteAllItems();
+
+    display();
+});
 
 // Action Handlers
 
@@ -54,6 +62,7 @@ async function handlePageLoad() {
 async function handleSignOut() {
     signOut();
 }
+
 
 // Components 
 const User = createUser(
