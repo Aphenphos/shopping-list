@@ -13,14 +13,12 @@ const deleteAllButton = document.getElementById('delete-all');
 inputForm.addEventListener('submit', async (e)=> {
     e.preventDefault();
     const data = new FormData(inputForm);
-    console.log(data.get('name'));
     const item = await createItem({
         item: data.get('name'),
         quantity: data.get('quantity'),
         bought: false,
         user_id: user.id
     });
-    console.log(item);
     items.push(item);
     display();
 });
