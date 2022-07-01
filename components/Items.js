@@ -1,5 +1,5 @@
 
-export function Item({ item, handleBought, handleDelete}) {
+export function Item({ item, handleBought, handleDelete }) {
     const li = document.createElement('li');
     li.classList.add('item-container');
     if (item.bought) {

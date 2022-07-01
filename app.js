@@ -1,8 +1,9 @@
 import { getUser, signOut } from './services/auth-service.js';
 import { protectPage } from './utils.js';
 import createUser from './components/User.js';
-import getAllItems, { createItem, deleteItem, updateItem } from './services/Item-service.js';
+import { getAllItems, createItem, deleteItem, updateItem } from './services/Item-service.js';
 import createListItems from './components/Items.js';
+import createNewItem from './components/AddItem.js';
 // State
 let user = null;
 let items = [];
@@ -57,7 +58,7 @@ const Items = createListItems(document.querySelector('#list-container'), {
     handleDelete,
 });
 
-const AddItem = createItem(document.querySelector('#user-inputs'), {
+const AddItem = createNewItem(document.querySelector('#user-inputs'), {
     handleAdd
 });
 
