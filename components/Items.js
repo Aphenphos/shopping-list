@@ -10,6 +10,10 @@ export function Item({ item, handleBought, handleDelete}) {
     h1.textContent = item.name;
     h1.classList.add('item-name');
 
+    const h2 = document.createElement('h2');
+    h2.textContent = item.quantity;
+    h2.classList.add('item-quantity');
+
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.classList.add('item-checkbox');
@@ -27,8 +31,8 @@ export function Item({ item, handleBought, handleDelete}) {
 }
 
 
-export default function createListItem(root, {
-    handleChecked,
+export default function createListItems(root, {
+    handleBought,
     handleDelete,
 }) {
 
@@ -38,7 +42,7 @@ export default function createListItem(root, {
         for (const item of items) {
             const li = Item({
                 item,
-                handleChecked,
+                handleBought,
                 handleDelete,
             });
             root.append(li);

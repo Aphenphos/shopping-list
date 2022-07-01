@@ -9,6 +9,14 @@ export async function getAllItems() {
     return response.data;
 }
 
+export async function updateItem(item) {
+    const response = await client
+        .from('items')
+        .update(item)
+        .match({ id: item.id });
+    return response.data;
+}
+
 export async function createItem(item) {
     const response = await client
         .from('items')
